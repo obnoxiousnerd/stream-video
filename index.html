@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stream Video</title>
+    <style>
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="info">
+      <h1>Easy Video Streaming, available here</h1>
+      <p>Just add the video link in the URL like this:</p>
+      <code>
+        <script>
+          document.write(window.location.href + "?url=https://YOUR-VIDEO-URL");
+        </script>
+      </code>
+    </div>
+    <script>
+      const url = new URL(window.location.href);
+      const urlParams = url.searchParams.toString();
+      const videoURL = unescape(/[^url=].*/gm.exec(urlParams)[0]);
+      if (videoURL && videoURL !== "") {
+        const videoPlayer = document.createElement("video");
+        videoPlayer.controls = true;
+        videoPlayer.src = videoURL;
+        videoPlayer.style.width = "60%";
+        document.querySelector("#info").setAttribute("hidden", "hidden");
+        document.body.appendChild(videoPlayer);
+      } else {
+      }
+    </script>
+  </body>
+</html>
